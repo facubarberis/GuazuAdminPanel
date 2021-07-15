@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: /
-    destination:  /opt/codedeploy-agent/deployment-root/a6db02a0-65a9-41ad-87b3-1cf7fa3c6c6c/d-YKYTRCJRA/deployment-archive/scripts
+    destination: /home/ec2-user/AplicacionCodeDeploy
 
 permissions:
   - object: /
@@ -13,18 +13,18 @@ permissions:
 
 hooks:
   BeforeInstall:
-    - location: server_clear.sh
+    - location: scripts/server_clear.sh
       timeout: 300
       runas: ec2-user
   AfterInstall:
-    - location: fix_privileges.sh
+    - location: scripts/fix_privileges.sh
       timeout: 300
       runas: ec2-user
   ApplicationStart:
-    - location: server_start.sh
+    - location: scripts/server_start.sh
       timeout: 20
       runas: ec2-user
   ApplicationStop:
-    - location: server_stop.sh
+    - location: scripts/server_stop.sh
       timeout: 20
       runas: ec2-user
